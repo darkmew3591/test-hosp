@@ -1,0 +1,7 @@
+Esta aplicacion requiere java 1.8 y maven para su compilacion y ejecucion.
+
+Para compilar con comando:
+> mvn -B -DskipTests clean package
+
+para ejecutar, se puede utilizar el comando
+> java -jar test-hosp-0.0.1-SNAPSHOT.jar

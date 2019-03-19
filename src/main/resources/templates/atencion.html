@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <title>Hospital</title>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <style>
+        	body{background-color: #f0f0f0;}
+        	.logo {
+				width: 27px;
+    			max-width: 280px;
+    			vertical-align: text-bottom !important;
+			}
+			.prin{color:#F85A51; font-size: 27px;font-family: 'Ubuntu', sans-serif}
+			.sec{color:#6A7891; font-size: 27px;font-family: 'Ubuntu', sans-serif}
+			.info-usuario{float:right}
+			.header{background-color: white;}
+			
+        </style>
+        <script>
+	        
+        </script>
+    </head>
+    <body>
+    	<div th:replace="fragments/header :: header">...</div>
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+        			<h1>Atención de pacientes</h1>
+        		</div>
+        	</div>
+        	<div class="row">
+        		<div class="col-md-12">
+        			<table class="table">
+        				<tr th:each="consulta, itemStat : ${consultas}">
+        					<td width="15%"><b><span th:text="${consulta.tipoConsulta}"></span></b>&nbsp;(<span th:text="${consulta.cantPacientes}"></span>) </td>
+        					<td width="70%">Especialista:&nbsp;<span th:text="${consulta.nombreEspecialista}"></span><span th:if="${consulta.pacienteAtendido != null }">&nbsp;atendiendo a&nbsp;<span th:text="${consulta.pacienteAtendido.nombre}"></span></span></td>
+        					<td width="15%"><p><span th:text="${consulta.estado}"></span></p></td>
+        				</tr>
+        			</table>
+					<a  class="btn btn-primary mb-2" href="/paciente/atender"><span class="glyphicon glyphicon glyphicon-hand-up"></span>&nbsp;Atender Pacientes</a>
+        			<a  class="btn btn-primary mb-2" href="/paciente/liberar"><span class="glyphicon glyphicon glyphicon-sort"></span>&nbsp;Liberar Consultas</a>
+        			<a  class="btn btn-primary mb-2" href="/paciente/optimizar"><span class="glyphicon glyphicon glyphicon-list"></span>&nbsp;Optimizar Listado</a>
+        			
+        		</div>
+        	</div>
+        	<div class="row">
+        		<div class="col-md-6">
+        			<h4>Sala de Espera</h4>
+        			<table class="table" style="margin-top:30px">
+			        	<thead>
+			        		<tr>
+			        			<th>Id Ficha</th>
+			        			<th>Nombre</th>
+			        			<th>Edad</th>
+			        			<th>Años Fumador</th>
+			        			<th>Dieta</th>
+			        			<th>R Peso-Estatura</th>
+			        			<th>Prioridad</th>
+			        			<th>Riesgo</th>
+			        		</tr>
+			        	</thead>
+			        	<tr th:if="${pacientesEspera == null }">
+			        		<td colspan="7">Sin registros...</td>
+			        	</tr>
+			        	<tr th:if="${pacientesEspera != null}" th:each="paciente, itemStat : ${pacientesEspera}">
+			        		<td><span th:text="${paciente?.noHistorialClinico}"></span></td>
+			        		<td><span th:text="${paciente?.nombre}"></span></td>
+			        		<td><span th:text="${paciente?.edad}"></span></td>
+			        		<td><span th:if="${paciente instanceof T(corp.cencosud.test.models.PacienteJoven)}" th:text="${paciente?.aniosFumador}"></span></td>
+			        		<td><span th:if="${paciente instanceof T(corp.cencosud.test.models.PacienteAnciano)}" th:text="${paciente?.tieneDieta? 'Si':'No'}"></span></td>
+			        		<td><span th:if="${paciente instanceof T(corp.cencosud.test.models.PacienteNino)}" th:text="${paciente?.relacionPesoEstatura}"></span></td>
+			        		<td><span th:text="${paciente?.prioridad}"></span></td>
+			        		<td><span th:text="${#numbers.formatDecimal(paciente?.riesgo, 1, 'POINT', 2, 'COMMA')}"></span></td>
+			        	</tr>
+			        </table>
+        		</div>
+        		<div class="col-md-6">
+        			<h4>Sala de Pendientes</h4>
+        			<table class="table" style="margin-top:30px">
+			        	<thead>
+			        		<tr>
+			        			<th>Id Ficha</th>
+			        			<th>Nombre</th>
+			        			<th>Edad</th>
+			        			<th>Años Fumador</th>
+			        			<th>Dieta</th>
+			        			<th>R Peso-Estatura</th>
+			        			<th>Prioridad</th>
+			        			<th>Riesgo</th>
+			        		</tr>
+			        	</thead>
+			        	<tr th:if="${pacientesPendientes == null }">
+			        		<td colspan="7">Sin registros...</td>
+			        	</tr>
+			        	<tr th:if="${pacientesPendientes != null}" th:each="paciente, itemStat : ${pacientesPendientes}">
+			        		<td><span th:text="${paciente?.noHistorialClinico}"></span></td>
+			        		<td><span th:text="${paciente?.nombre}"></span></td>
+			        		<td><span th:text="${paciente?.edad}"></span></td>
+			        		<td><span th:if="${paciente instanceof T(corp.cencosud.test.models.PacienteJoven)}" th:text="${paciente?.aniosFumador}"></span></td>
+			        		<td><span th:if="${paciente instanceof T(corp.cencosud.test.models.PacienteAnciano)}" th:text="${paciente?.tieneDieta? 'Si':'No'}"></span></td>
+			        		<td><span th:if="${paciente instanceof T(corp.cencosud.test.models.PacienteNino)}" th:text="${paciente?.relacionPesoEstatura}"></span></td>
+			        		<td><span th:text="${paciente?.prioridad}"></span></td>
+			        		<td><span th:text="${#numbers.formatDecimal(paciente?.riesgo, 1, 'POINT', 2, 'COMMA')}"></span></td>
+			        	</tr>
+			        </table>
+        		</div>
+        	</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<!--     	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+    	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <title>Hospital</title>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <style>
+        	body{background-color: #f0f0f0;}
+        	.logo {
+				width: 27px;
+    			max-width: 280px;
+    			vertical-align: text-bottom !important;
+			}
+			.prin{color:#F85A51; font-size: 27px;font-family: 'Ubuntu', sans-serif}
+			.sec{color:#6A7891; font-size: 27px;font-family: 'Ubuntu', sans-serif}
+			.info-usuario{float:right}
+			.header{background-color: white;}
+			
+			.card{    	position: relative;
+					    display: -ms-flexbox;
+					    display: inline-flex;
+					    -ms-flex-direction: row;
+					    flex-direction: row;
+					    min-width: 0;
+					    word-wrap: break-word;
+					    background-color: #fff;
+					    background-clip: border-box;
+					    border: 1px solid rgba(0,0,0,.125);
+					    border-radius: 8px;
+					    text-align: center;
+					    align-items: center;}
+			.card-body {
+			  flex: 1 1 auto;
+			  padding: 1.25rem;
+			}
+			.card-title {
+			  margin-bottom: 1.25rem;
+			  font-size: 19px;
+			}
+			.card-text:last-child {
+			  margin-bottom: 0;
+			}
+        </style>
+    </head>
+    <body>
+    	<div th:replace="fragments/header :: header">...</div>
+    	<div class="container">
+    		
+	        <h1>Atención Hospitalaria</h1>
+	        
+	        <div class="card" style="width: 18rem;">
+				<div class="card-body">
+				  <b class="card-title">Pacientes Riesgo</b>
+				  <hr />
+				  <p class="card-text">Listar pacientes con mayor riesgo, dado un numero de ficha.</p>
+				  <br/>
+				  <a th:href="@{/paciente/riesgo}" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>&nbsp;Ver Riesgo</a>
+				</div>
+			</div>
+	        <div class="card" style="width: 18rem;">
+				<div class="card-body">
+				  <b class="card-title">Paciente Mayor</b>
+				  <hr />
+				  <p class="card-text">Muestra el paciente de mayor edad en la sala de espera.</p>
+				  <br/>
+				  <a th:href="@{/paciente/viejo}" class="btn btn-primary"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Ver Mayor</a>
+				</div>
+			</div>
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+				  <b class="card-title">Atención</b>
+				  <hr />
+				  <p class="card-text">Gestiona atención pacientes.</p>
+				  <br/>
+				  <a th:href="@{/paciente/atencion}" class="btn btn-primary"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Atender</a>
+				</div>
+			</div>
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+				  <b class="card-title">Consulta mayor atención</b>
+				  <hr />
+				  <p class="card-text">Consulta que ha atendido más pacientes.</p>
+				  <br/>
+				  <a th:href="@{/paciente/consulta}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>&nbsp;Ver Consulta</a>
+				</div>
+			</div>
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+				  <b class="card-title">Fumadores</b>
+				  <hr />
+				  <p class="card-text">Lista pacientes fumadores de urgencia.</p>
+				  <br/>
+				  <a th:href="@{/paciente/fumadores}" class="btn btn-primary"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Ver Fumadores</a>
+				</div>
+			</div>
+    	</div>
+    </body>
+</html>

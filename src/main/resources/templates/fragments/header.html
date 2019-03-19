@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      <body>
+      	<div class="header" th:fragment="header">
+    		<a th:href="@{/}">
+				<span class="info-logo"><b><span class="prin">Test</span><span class="sec">Hospital</span></b></span>
+    		</a>
+			<span class="info-usuario">
+				<i class="glyphicon glyphicon-user"></i>Bienvenido
+<!-- 				<span th:text="${logedUser}"></span> -->
+<!-- 				<a class="btn" th:href="@{/login?logout}"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Salir</a> -->
+			</span>
+    	</div>
+      </body>
+</html>
